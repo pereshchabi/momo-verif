@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Momo checking </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(-45deg, #6EE7B7, #0d1015, #1eb06f, #b1e612);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body class="relative min-h-screen flex items-center justify-center text-white">
+  <canvas id="particles" class="fixed top-0 left-0 w-full h-full z-0"></canvas>
+
+  <div class="z-10 bg-black bg-opacity-50 p-6 rounded-2xl shadow-2xl max-w-2xl w-full space-y-6">
+    <h1 class="text-3xl font-bold text-center">🧮 Depots et retraits verif</h1>
+    <p class="text-center text-sm">Vérifie si tes finances sont équilibrées entre tes comptes numériques et ton cash</p>
+
+    <form id="financeForm" class="space-y-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div><label class="block text-sm font-semibold">MTN (matin)</label><input type="number" name="mtn_matin" class="w-full p-2 rounded text-black" /></div>
+        <div><label class="block text-sm font-semibold">MTN (actuel)</label><input type="number" name="mtn_soir" class="w-full p-2 rounded text-black" /></div>
+        <div><label class="block text-sm font-semibold">Moov (matin)</label><input type="number" name="moov_matin" class="w-full p-2 rounded text-black" /></div>
+        <div><label class="block text-sm font-semibold">Moov (actuel)</label><input type="number" name="moov_soir" class="w-full p-2 rounded text-black" /></div>
+        <div><label class="block text-sm font-semibold">Celtis (matin)</label><input type="number" name="celtis_matin" class="w-full p-2 rounded text-black" /></div>
+        <div><label class="block text-sm font-semibold">Celtis (actuel)</label><input type="number" name="celtis_soir" class="w-full p-2 rounded text-black" /></div>
+        <div><label class="block text-sm font-semibold">Espèces (matin)</label><input type="number" name="cash_matin" class="w-full p-2 rounded text-black" /></div>
+        <div><label class="block text-sm font-semibold">Espèces (actuel)</label><input type="number" name="cash_soir" class="w-full p-2 rounded text-black" /></div>
+      </div>
+      <button type="submit" class="w-full bg-green-500 hover:bg-green-600 p-2 rounded font-bold">Vérifier</button>
+    </form>
+
+    <div id="resultat" class="text-center font-semibold mt-4"></div>
+
+    <div class="mt-8">
+      <canvas id="barChart" class="mb-6"></canvas>
+      <canvas id="donutChart"></canvas>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
